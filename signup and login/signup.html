@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script src="https://code.jquery.com/jquery-4.0.0.js"
+        integrity="sha256-9fsHeVnKBvqh3FB2HYu7g2xseAZ5MlN6Kz/qnkASV8U=" crossorigin="anonymous"></script>
+
+    <h1>SIGNUP FORM</h1>
+
+    <form action="" id="signupform">
+        <label for="">Enter name</label>
+        <input type="text" id="username" placeholder="Enter Your name"><br>
+        <label for="">Enter Email</label><br>
+        <input type="text" id="email" placeholder="Enter Email"><br>
+        <label for="">Enter Password</label><br>
+        <input type="text" id="password" placeholder="Enter Password"><br>
+
+        <button type="submit">Signup</button>
+    </form>
+
+    <script>
+        $(document).ready(function () {
+
+            function checkname() {
+                var value = $("#username").val();
+                var regexp = /^[A-Za-z][A-Za-z0-9_]{5,10}$/;
+                if (regexp.test(value)) {
+                    alert("your rule is applied", value)
+                }
+                else {
+                    alert("your rule is fail")
+                }
+                console.log(value)
+            }
+
+            function checkemail() {
+
+                var emailvalue = $("#email").val();
+
+                console.log(emailvalue)
+
+                var reg = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+
+                if (reg.test(emailvalue)) {
+                    alert("your rule is applied")
+                }
+
+                else {
+                    alert("your rules is fail")
+                }
+            }
+
+
+            function checkpassword() {
+                var passwordvalue = $("#password").val()
+                var passreg = /^(?=.*[a-z])(?=.*[A-Z])(?=.*[\d])(?=.*[A-Za-z0-9]).{8,}$/;
+                if (passreg.test(passwordvalue)) {
+                    alert("password is  strong")
+                }
+                else {
+                    alert("password is not strong")
+                }
+            }
+            $("#signupform").submit(function (e) {
+                e.preventDefault()
+                // checkname()
+                // checkemail()
+                checkpassword()
+
+            })
+
+        })
+
+
+
+
+    </script>
+</body>
+
+</html>
