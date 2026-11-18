@@ -14,13 +14,15 @@
     <h1>SIGNUP FORM</h1>
 
     <form action="" id="signupform">
-        <label for="">Enter name</label>
-        <input type="text" id="username" placeholder="Enter Your name"><br>
+        <label for="">Enter name</label><br>
+        <span style="color: green;">Name length must be greater than five</span><br>
+        <input type="text" id="username" placeholder="Enter Your name "><br>
         <label for="">Enter Email</label><br>
         <input type="text" id="email" placeholder="Enter Email"><br>
         <label for="">Enter Password</label><br>
         <input type="text" id="password" placeholder="Enter Password"><br>
-
+        <label for="">Confirm Password</label><br>
+        <input type="text" id="cpassword" placeholder="Confirm Password"><br>
         <button type="submit">Signup</button>
     </form>
 
@@ -30,13 +32,12 @@
             function checkname() {
                 var value = $("#username").val();
                 var regexp = /^[A-Za-z][A-Za-z0-9_]{5,10}$/;
-                if (regexp.test(value)) {
-                    alert("your rule is applied", value)
+                if (!regexp.test(value)) {
+                    alert("Name Must be Greater then 5")
+                    return false
                 }
-                else {
-                    alert("your rule is fail")
-                }
-                console.log(value)
+
+                return true
             }
 
             function checkemail() {
@@ -47,31 +48,37 @@
 
                 var reg = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 
-                if (reg.test(emailvalue)) {
-                    alert("your rule is applied")
+                if (!reg.test(emailvalue)) {
+                    alert("Enter Valid Email")
+                    return false
                 }
+                return true
 
-                else {
-                    alert("your rules is fail")
-                }
             }
 
 
             function checkpassword() {
                 var passwordvalue = $("#password").val()
+                var cpassword = $("#cpassword").val()
                 var passreg = /^(?=.*[a-z])(?=.*[A-Z])(?=.*[\d])(?=.*[A-Za-z0-9]).{8,}$/;
-                if (passreg.test(passwordvalue)) {
-                    alert("password is  strong")
+                if (!passreg.test(passwordvalue)) {
+                    alert("password is  not  strong")
+                    return false;
                 }
-                else {
-                    alert("password is not strong")
+                if (cpassword !== passwordvalue) {
+                    alert("confirm password is not match wit password")
+                    return false
                 }
+                return true;
             }
             $("#signupform").submit(function (e) {
                 e.preventDefault()
-                // checkname()
-                // checkemail()
-                checkpassword()
+                // // checkname()
+                // // checkemail()
+                // checkpassword()
+                if (checkname() && checkemail() && checkpassword()) {
+                    alert("Signup sucessfull")
+                }
 
             })
 
